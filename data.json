@@ -1,0 +1,16 @@
+[
+  {
+    "transaction_id": "tx_101",
+    "customer_id": "cust_901",
+    "amount": 4999.00,
+    "raw_gateway_message": "Gateway connection dropped mid-packet after 30s timeout. Issuer never saw the charge.",
+    "retry_count": 1
+  },
+  {
+    "transaction_id": "tx_102",
+    "customer_id": "cust_902",
+    "amount": 199.00,
+    "raw_gateway_message": "Declined: Account has insufficient funds available in current balance at time of debit.",
+    "retry_count": 3
+  }
+]
