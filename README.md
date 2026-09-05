@@ -24,7 +24,10 @@ razorpay-recovery-agent/
 └── README.md      # Project documentation
 
 
+---
+
 ## **Setup & Installation Instructions**
+```text
 Clone the repository and enter the directory:
 
 Bash
