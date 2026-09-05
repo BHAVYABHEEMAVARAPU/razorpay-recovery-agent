@@ -1,19 +1,16 @@
-# Revensight AI: Intelligent Subscription & Checkout Recovery Agent
+# Revensight AI
 
-Revensight AI is an autonomous, cost-aware financial recovery agent built for **Track 3: AI Revenue Recovery** for the Razorpay Buildathon. It bridges modern generative AI with bulletproof backend financial guardrails to recover lost merchant revenue from failed subscriptions and checkouts without wasting capital on blind retry fees.
+## Autonomous Revenue Recovery Agent for Razorpay
 
----
+Revensight AI is an AI-powered revenue recovery agent designed to help merchants recover failed subscription and checkout payments without blindly retrying every transaction.
 
-## **The Problem**
-Digital merchants lose substantial revenue due to recurring subscription renewals and checkouts failing from temporary gateway timeouts, dropped packets, or insufficient funds. However, blindly retrying every failed transaction incurs heavy processing fee leakage and can trigger issuer penalties.
+## Problem
 
-## **The Solution**
-Revensight AI uses a hybrid architecture:
-1. **AI Parsing Layer:** Utilizes the Gemini API to analyze unstructured, messy human/gateway error messages and normalize them into clear categories (`GATEWAY_TIMEOUT`, `INSUFFICIENT_FUNDS`, etc.).
-2. **Deterministic Guardrail Layer:** Enforces hardcoded business safety rules (such as strict retry limits) to ensure money actions are never executed blindly.
+Payment failures are not all equal.
 
----
+A temporary gateway timeout may be recoverable immediately.
 
+<<<<<<< HEAD
 ## **Project Structure**
 ```text
 razorpay-recovery-agent/
@@ -58,3 +55,100 @@ Bash
 uvicorn main:app --reload
 Test the Endpoint:
 Open your browser and navigate to http://127.0.0.1:8000/docs to interact with the Swagger UI, expand the POST /run-recovery-batch route, and execute the simulation.
+=======
+Insufficient funds may require a delayed retry.
+
+An expired card requires customer action.
+
+A risk-related rejection should not be automatically retried.
+
+Blind retrying can waste money, create unnecessary payment attempts and damage customer experience.
+
+## Solution
+
+Revensight combines:
+
+1. AI payment-failure diagnosis
+2. Customer payment history
+3. Recovery probability estimation
+4. Economic expected-value analysis
+5. Deterministic financial guardrails
+6. Controlled recovery actions
+7. Complete audit trail
+
+## Architecture
+
+Payment Failure
+        |
+        v
+AI Diagnosis
+        |
+        v
+Customer Context
+        |
+        v
+Recovery Probability
+        |
+        v
+Economic Evaluation
+        |
+        v
+Safety Guardrails
+        |
+        +----------------+
+        |                |
+        v                v
+     Recovery          Customer
+      Action            Action
+        |
+        v
+    Audit Trail
+
+## AI Categories
+
+The diagnosis engine supports:
+
+- GATEWAY_TIMEOUT
+- INSUFFICIENT_FUNDS
+- CARD_EXPIRED
+- AUTHENTICATION_FAILURE
+- LIMIT_EXCEEDED
+- RISK_REJECTION
+- BANK_DECLINE
+- UNKNOWN
+
+## Recovery Actions
+
+The agent can recommend:
+
+- RETRY_NOW
+- SCHEDULE_RETRY
+- SEND_PAYMENT_LINK
+- ESCALATE
+- STOP
+
+## Safety
+
+The LLM does not have unrestricted authority over financial actions.
+
+Deterministic guardrails enforce:
+
+- Maximum retry limits
+- Risk rejection protection
+- Economic thresholds
+- Customer-action requirements
+- Audit logging
+
+## Important
+
+The current execution layer is a sandbox simulation.
+
+It does not move real money.
+
+Razorpay Test Mode can be connected for payment-data retrieval and integration testing.
+
+## Running locally
+
+```bash
+python -m venv venv
+>>>>>>> d2eb23a (Upgrade Revensight AI revenue recovery agent)

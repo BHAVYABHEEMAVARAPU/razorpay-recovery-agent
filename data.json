@@ -1,16 +1,135 @@
-[
-  {
-    "transaction_id": "tx_101",
-    "customer_id": "cust_901",
-    "amount": 4999.00,
-    "raw_gateway_message": "Gateway connection dropped mid-packet after 30s timeout. Issuer never saw the charge.",
-    "retry_count": 1
+{
+  "customers": {
+    "cust_901": {
+      "successful_payments": 8,
+      "previous_failures": 1,
+      "lifetime_value": 42000
+    },
+
+    "cust_902": {
+      "successful_payments": 1,
+      "previous_failures": 4,
+      "lifetime_value": 1200
+    },
+
+    "cust_903": {
+      "successful_payments": 12,
+      "previous_failures": 1,
+      "lifetime_value": 85000
+    },
+
+    "cust_904": {
+      "successful_payments": 0,
+      "previous_failures": 2,
+      "lifetime_value": 499
+    },
+
+    "cust_905": {
+      "successful_payments": 5,
+      "previous_failures": 2,
+      "lifetime_value": 18000
+    },
+
+    "cust_906": {
+      "successful_payments": 15,
+      "previous_failures": 0,
+      "lifetime_value": 125000
+    },
+
+    "cust_907": {
+      "successful_payments": 2,
+      "previous_failures": 1,
+      "lifetime_value": 3500
+    },
+
+    "cust_908": {
+      "successful_payments": 7,
+      "previous_failures": 3,
+      "lifetime_value": 27000
+    }
   },
-  {
-    "transaction_id": "tx_102",
-    "customer_id": "cust_902",
-    "amount": 199.00,
-    "raw_gateway_message": "Declined: Account has insufficient funds available in current balance at time of debit.",
-    "retry_count": 3
-  }
-]
+
+  "transactions": [
+
+    {
+      "transaction_id": "tx_101",
+      "customer_id": "cust_901",
+      "amount": 4999,
+      "raw_gateway_message": "Gateway connection dropped mid-packet after 30s timeout. Issuer never saw the charge.",
+      "retry_count": 0
+    },
+
+    {
+      "transaction_id": "tx_102",
+      "customer_id": "cust_902",
+      "amount": 199,
+      "raw_gateway_message": "Declined: Account has insufficient funds available in current balance at time of debit.",
+      "retry_count": 3
+    },
+
+    {
+      "transaction_id": "tx_103",
+      "customer_id": "cust_903",
+      "amount": 12999,
+      "raw_gateway_message": "Temporary payment gateway unavailable. Connection to acquiring bank timed out.",
+      "retry_count": 0
+    },
+
+    {
+      "transaction_id": "tx_104",
+      "customer_id": "cust_904",
+      "amount": 499,
+      "raw_gateway_message": "Customer authentication failed during 3DS verification.",
+      "retry_count": 0
+    },
+
+    {
+      "transaction_id": "tx_105",
+      "customer_id": "cust_905",
+      "amount": 2499,
+      "raw_gateway_message": "Insufficient funds. Bank declined the debit because available balance was too low.",
+      "retry_count": 1
+    },
+
+    {
+      "transaction_id": "tx_106",
+      "customer_id": "cust_906",
+      "amount": 24999,
+      "raw_gateway_message": "Network timeout while contacting issuer. Gateway did not receive response.",
+      "retry_count": 0
+    },
+
+    {
+      "transaction_id": "tx_107",
+      "customer_id": "cust_907",
+      "amount": 799,
+      "raw_gateway_message": "Card expired. Payment method expiry date is no longer valid.",
+      "retry_count": 0
+    },
+
+    {
+      "transaction_id": "tx_108",
+      "customer_id": "cust_908",
+      "amount": 5999,
+      "raw_gateway_message": "Transaction rejected because daily card limit was exceeded.",
+      "retry_count": 1
+    },
+
+    {
+      "transaction_id": "tx_109",
+      "customer_id": "cust_903",
+      "amount": 18999,
+      "raw_gateway_message": "Bank declined transaction due to temporary issuer unavailability.",
+      "retry_count": 1
+    },
+
+    {
+      "transaction_id": "tx_110",
+      "customer_id": "cust_904",
+      "amount": 299,
+      "raw_gateway_message": "Transaction rejected by risk engine because activity was considered suspicious.",
+      "retry_count": 0
+    }
+
+  ]
+}

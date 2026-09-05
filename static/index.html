@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Revensight AI</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+
+    background:
+        #070b14;
+
+    color:
+        #f4f7fb;
+}
+
+.container {
+
+    max-width: 1400px;
+
+    margin:
+        auto;
+
+    padding:
+        32px;
+}
+
+.header {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        30px;
+}
+
+.brand h1 {
+
+    margin:
+        0;
+
+    font-size:
+        32px;
+}
+
+.brand p {
+
+    margin-top:
+        8px;
+
+    color:
+        #8e99ad;
+}
+
+.badge {
+
+    padding:
+        8px 14px;
+
+    border:
+        1px solid #26344d;
+
+    border-radius:
+        999px;
+
+    background:
+        #101827;
+
+    color:
+        #7ee7a8;
+
+    font-size:
+        13px;
+}
+
+button {
+
+    background:
+        #ffffff;
+
+    color:
+        #05070d;
+
+    border:
+        none;
+
+    padding:
+        13px 20px;
+
+    border-radius:
+        10px;
+
+    cursor:
+        pointer;
+
+    font-weight:
+        700;
+}
+
+button:hover {
+
+    opacity:
+        0.88;
+}
+
+.metrics {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap:
+        15px;
+
+    margin-bottom:
+        25px;
+}
+
+.card {
+
+    background:
+        #0e1523;
+
+    border:
+        1px solid #1e2a3e;
+
+    border-radius:
+        15px;
+
+    padding:
+        20px;
+}
+
+.metric-label {
+
+    color:
+        #8792a7;
+
+    font-size:
+        13px;
+
+    margin-bottom:
+        10px;
+}
+
+.metric-value {
+
+    font-size:
+        25px;
+
+    font-weight:
+        800;
+}
+
+.dashboard {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr;
+
+    gap:
+        20px;
+}
+
+.panel {
+
+    background:
+        #0e1523;
+
+    border:
+        1px solid #1e2a3e;
+
+    border-radius:
+        15px;
+
+    overflow:
+        hidden;
+}
+
+.panel-header {
+
+    padding:
+        18px 20px;
+
+    border-bottom:
+        1px solid #1e2a3e;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+}
+
+.panel-header h2 {
+
+    margin:
+        0;
+
+    font-size:
+        18px;
+}
+
+table {
+
+    width:
+        100%;
+
+    border-collapse:
+        collapse;
+}
+
+th {
+
+    text-align:
+        left;
+
+    padding:
+        14px 18px;
+
+    color:
+        #7e8ba0;
+
+    font-size:
+        12px;
+
+    text-transform:
+        uppercase;
+
+    border-bottom:
+        1px solid #1e2a3e;
+}
+
+td {
+
+    padding:
+        15px 18px;
+
+    border-bottom:
+        1px solid #172134;
+
+    font-size:
+        14px;
+}
+
+tr:hover {
+
+    background:
+        #111b2b;
+}
+
+.action {
+
+    display:
+        inline-block;
+
+    padding:
+        6px 10px;
+
+    border-radius:
+        7px;
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+}
+
+.retry {
+
+    background:
+        #123c2b;
+
+    color:
+        #76efad;
+}
+
+.schedule {
+
+    background:
+        #3d3213;
+
+    color:
+        #f5d66e;
+}
+
+.message {
+
+    background:
+        #162e49;
+
+    color:
+        #77c6ff;
+}
+
+.stop {
+
+    background:
+        #3d1720;
+
+    color:
+        #ff8294;
+}
+
+.escalate {
+
+    background:
+        #3d2020;
+
+    color:
+        #ff9e85;
+}
+
+.risk-low {
+
+    color:
+        #70e3a3;
+}
+
+.risk-medium {
+
+    color:
+        #f2d06d;
+}
+
+.risk-high {
+
+    color:
+        #ff7588;
+}
+
+#status {
+
+    margin-top:
+        20px;
+
+    color:
+        #8996aa;
+
+    text-align:
+        center;
+}
+
+.reason {
+
+    color:
+        #8e9aaf;
+
+    max-width:
+        420px;
+
+    line-height:
+        1.4;
+}
+
+@media(max-width: 1000px) {
+
+    .metrics {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+@media(max-width: 650px) {
+
+    .container {
+
+        padding:
+            15px;
+    }
+
+    .header {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            15px;
+    }
+
+    .metrics {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .panel {
+
+        overflow-x:
+            auto;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div class="brand">
+
+            <h1>REVENSIGHT AI</h1>
+
+            <p>
+                Autonomous Revenue Recovery Agent
+            </p>
+
+        </div>
+
+        <div>
+
+            <span class="badge">
+                AI + ECONOMIC GUARDRAILS
+            </span>
+
+            <button
+                onclick="runAgent()"
+                style="margin-left:10px"
+            >
+                Run Recovery Agent
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="metrics">
+
+        <div class="card">
+
+            <div class="metric-label">
+                REVENUE AT RISK
+            </div>
+
+            <div
+                class="metric-value"
+                id="risk"
+            >
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="metric-label">
+                EXPECTED RECOVERY
+            </div>
+
+            <div
+                class="metric-value"
+                id="recovery"
+            >
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="metric-label">
+                RECOVERY RATE
+            </div>
+
+            <div
+                class="metric-value"
+                id="rate"
+            >
+                0%
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="metric-label">
+                EXPECTED NET VALUE
+            </div>
+
+            <div
+                class="metric-value"
+                id="net"
+            >
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="metric-label">
+                TRANSACTIONS
+            </div>
+
+            <div
+                class="metric-value"
+                id="count"
+            >
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard">
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h2>
+                    Agent Decision Center
+                </h2>
+
+                <span
+                    id="status"
+                    style="margin:0"
+                >
+                    Ready
+                </span>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Transaction
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Diagnosis
+                        </th>
+
+                        <th>
+                            Recovery Probability
+                        </th>
+
+                        <th>
+                            Decision
+                        </th>
+
+                        <th>
+                            Risk
+                        </th>
+
+                        <th>
+                            Expected Net
+                        </th>
+
+                        <th>
+                            Agent Reasoning
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="results">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function money(value) {
+
+    return "₹" +
+        Number(value).toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits: 2
+            }
+        );
+
+}
+
+
+function actionClass(action) {
+
+    if (action === "RETRY_NOW") {
+        return "retry";
+    }
+
+    if (action === "SCHEDULE_RETRY") {
+        return "schedule";
+    }
+
+    if (action === "SEND_PAYMENT_LINK") {
+        return "message";
+    }
+
+    if (action === "STOP") {
+        return "stop";
+    }
+
+    return "escalate";
+}
+
+
+async function runAgent() {
+
+    const status =
+        document.getElementById("status");
+
+    status.innerText =
+        "Agent running...";
+
+    try {
+
+        const response =
+            await fetch(
+                "/run-recovery",
+                {
+                    method: "POST"
+                }
+            );
+
+        const data =
+            await response.json();
+
+        updateDashboard(data);
+
+        status.innerText =
+            "Agent completed";
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        status.innerText =
+            "Agent failed";
+
+    }
+
+}
+
+
+function updateDashboard(data) {
+
+    const metrics =
+        data.metrics;
+
+    document.getElementById(
+        "risk"
+    ).innerText =
+        money(metrics.revenue_at_risk);
+
+
+    document.getElementById(
+        "recovery"
+    ).innerText =
+        money(metrics.expected_revenue_recovered);
+
+
+    document.getElementById(
+        "rate"
+    ).innerText =
+        metrics.estimated_recovery_rate
+        + "%";
+
+
+    document.getElementById(
+        "net"
+    ).innerText =
+        money(metrics.expected_net_value);
+
+
+    document.getElementById(
+        "count"
+    ).innerText =
+        metrics.transactions_processed;
+
+
+    const tbody =
+        document.getElementById(
+            "results"
+        );
+
+    tbody.innerHTML = "";
+
+
+    data.results.forEach(
+        result => {
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.innerHTML = `
+
+                <td>
+                    <strong>
+                        ${result.transaction_id}
+                    </strong>
+                    <br>
+                    <small>
+                        ${result.customer_id}
+                    </small>
+                </td>
+
+                <td>
+                    ${money(result.amount)}
+                </td>
+
+                <td>
+                    ${result.diagnosis.category}
+                    <br>
+                    <small>
+                        AI confidence:
+                        ${Math.round(
+                            result.diagnosis.confidence * 100
+                        )}%
+                    </small>
+                </td>
+
+                <td>
+                    <strong>
+                        ${result.recovery_probability}%
+                    </strong>
+                </td>
+
+                <td>
+
+                    <span
+                        class="action ${actionClass(result.decision)}"
+                    >
+                        ${result.decision}
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <span
+                        class="risk-${result.risk.toLowerCase()}"
+                    >
+                        ${result.risk}
+                    </span>
+
+                </td>
+
+                <td>
+                    ${money(
+                        result.economics.expected_net_value
+                    )}
+                </td>
+
+                <td class="reason">
+
+                    ${result.reason}
+
+                </td>
+
+            `;
+
+            tbody.appendChild(row);
+
+        }
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>
