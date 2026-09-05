@@ -22,3 +22,36 @@ razorpay-recovery-agent/
 ├── engine.py      # Hybrid AI parsing and deterministic safety logic
 ├── data.json      # Synthetic failed transaction records
 └── README.md      # Project documentation
+
+
+## **Setup & Installation Instructions**
+Clone the repository and enter the directory:
+
+Bash
+git clone [https://github.com/BHAVYABHEEMAVARAPU/razorpay-recovery-agent.git](https://github.com/BHAVYABHEEMAVARAPU/razorpay-recovery-agent.git)
+cd razorpay-recovery-agent
+Create and activate a Python virtual environment:
+
+Bash
+python -m venv venv
+# On Windows:
+venv\Scripts\Activate
+# On macOS/Linux:
+source venv/bin/activate
+Install dependencies:
+
+Bash
+pip install fastapi uvicorn pydantic google-genai
+(Optional) Set your free Gemini API key:
+
+Bash
+# On Windows PowerShell:
+$env:GEMINI_API_KEY="your-api-key-here"
+(Note: The system features built-in fallback logic, so it runs seamlessly even without an active API key).
+
+Run the local server:
+
+Bash
+uvicorn main:app --reload
+Test the Endpoint:
+Open your browser and navigate to http://127.0.0.1:8000/docs to interact with the Swagger UI, expand the POST /run-recovery-batch route, and execute the simulation.
